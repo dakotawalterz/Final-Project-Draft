@@ -12,8 +12,7 @@ Here are some examples of creating and manipulating linked lists in C#:
 
 Singly linked list:
 
-java
-Copy code
+
 class Node {
     public int data;
     public Node next;
@@ -47,8 +46,6 @@ The Add method adds a new node with the given data to the end of the list.
 
 Doubly linked list:
 
-java
-Copy code
 class Node {
     public int data;
     public Node prev;
@@ -84,8 +81,7 @@ The Add method also sets the prev reference of the new node to the current node.
 
 Circular linked list:
 
-java
-Copy code
+
 class Node {
     public int data;
     public Node next;
