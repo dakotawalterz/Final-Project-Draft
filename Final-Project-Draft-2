@@ -1,116 +1,88 @@
-Linked lists are a fundamental data structure in computer science and programming,
-commonly used to store collections of elements. In C#, a linked list is a linear data structure consisting of nodes, 
-each containing a value and a reference to the next node. This allows for dynamic memory allocation and efficient insertion and removal of elements.
+TREES 
 
-In C#, there are three main types of linked lists: singly linked lists, 
-doubly linked lists, and circular linked lists.
-Singly linked lists consist of nodes with a value and a single reference to the next node, 
-while doubly linked lists contain references to both the next and previous nodes. 
-Circular linked lists can be either singly or doubly linked, but the last node is connected to the first node, creating a circular structure.
+In computer science, a Tree is a widely used data structure that is used to represent hierarchical relationships between elements. Trees are used to store data in a way that facilitates searching, sorting, and other operations. In C#, the Tree data structure can be implemented using classes and objects.
 
-Here are some examples of creating and manipulating linked lists in C#:
+The basic structure of a Tree is as follows: each node in the tree has a value, and can have one or more child nodes. Nodes with no children are called leaf nodes. The topmost node of a tree is called the root node.
 
-Singly linked list:
+Here's some example code that demonstrates how to implement a simple binary tree in C#:
 
-
-class Node {
-    public int data;
-    public Node next;
-    public Node(int d) {
-        data = d;
-        next = null;
+    public class TreeNode {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int x) { val = x; }
     }
-}
 
-class LinkedList {
-    public Node head;
-    public LinkedList() {
-        head = null;
-    }
-    public void Add(int data) {
-        Node new_node = new Node(data);
-        if (head == null) {
-            head = new_node;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
+    public class BinaryTree {
+        public TreeNode root;
+
+        public BinaryTree() {
+            root = null;
+        }
+
+        public void Insert(int value) {
+            root = Insert(root, value);
+        }
+
+        private TreeNode Insert(TreeNode node, int value) {
+            if (node == null) {
+                node = new TreeNode(value);
             }
-            current.next = new_node;
+            else if (value < node.val) {
+                node.left = Insert(node.left, value);
+            }
+            else {
+                node.right = Insert(node.right, value);
+            }
+            return node;
         }
     }
-}
-In this example, we define a Node class with a value (data) and a reference to the next node (next).
-We also define a LinkedList class with a head reference to the first node. 
-The Add method adds a new node with the given data to the end of the list.
+This code defines two classes: TreeNode, which represents a single node in the binary tree, and BinaryTree, which represents the entire tree. The BinaryTree class contains a reference to the root node, and defines a method called Insert for adding new nodes to the tree. The Insert method uses recursion to traverse the tree and find the correct location to insert the new node.
 
-Doubly linked list:
+Trees have many uses in computer science. One common use is in searching and sorting algorithms, where they can provide efficient access to data. For example, the binary search algorithm uses a binary tree to quickly locate a value in a sorted list.
 
-class Node {
-    public int data;
-    public Node prev;
-    public Node next;
-    public Node(int d) {
-        data = d;
-        prev = null;
-        next = null;
+Another common use for trees is in representing hierarchical relationships between elements. For example, a directory structure in a file system can be represented as a tree, with directories as nodes and files as leaves.
+
+Here's an example problem that can be solved using a tree:
+
+Suppose you have a list of employees at a company, each with a unique ID number and a supervisor who they report to. You want to be able to quickly find all of the employees who report to a particular supervisor.
+
+One way to solve this problem is to create a tree where each node represents an employee, and the child nodes represent the employees who report to them. The root node represents the CEO of the company. You can then traverse the tree starting from the node representing the desired supervisor, and collect all of the child nodes along the way.
+
+Here's some example code that demonstrates how to solve this problem:
+
+    public class Employee {
+        public int id;
+        public Employee supervisor;
     }
-}
 
-class LinkedList {
-    public Node head;
-    public LinkedList() {
-        head = null;
-    }
-    public void Add(int data) {
-        Node new_node = new Node(data);
-        if (head == null) {
-            head = new_node;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = new_node;
-            new_node.prev = current;
+    public class EmployeeTree {
+        public EmployeeNode root;
+
+        public EmployeeTree(Employee ceo) {
+            root = new EmployeeNode(ceo);
+            BuildTree(root);
         }
-    }
-}
-This example is similar to the singly linked list, but the Node class now includes a reference to the previous node (prev).
-The Add method also sets the prev reference of the new node to the current node.
 
-Circular linked list:
-
-
-class Node {
-    public int data;
-    public Node next;
-    public Node(int d) {
-        data = d;
-        next = null;
-    }
-}
-
-class LinkedList {
-    public Node head;
-    public LinkedList() {
-        head = null;
-    }
-    public void Add(int data) {
-        Node new_node = new Node(data);
-        if (head == null) {
-            head = new_node;
-            new_node.next = head;
-        } else {
-            Node current = head;
-            while (current.next != head) {
-                current = current.next;
+        private void BuildTree(EmployeeNode node) {
+            foreach (Employee employee in GetSubordinates(node.employee)) {
+                EmployeeNode childNode = new EmployeeNode(employee);
+                node.children.Add(childNode);
+                BuildTree(childNode);
             }
-            current.next = new_node;
-            new_node.next = head;
         }
-    }
-}
-This example is a circular singly linked list, where the last node's next reference points back to the head of the list. 
-The Add method checks if the list is empty, and if so, sets the new node's next reference to the head. Otherwise, 
-it traverses the list until it
+
+        private List<Employee> GetSubordinates(Employee supervisor) {
+            List<Employee> subordinates = new List<Employee>();
+            foreach (Employee employee in employees) {
+                if (employee.supervisor == supervisor) {
+                    subordinates.Add(employee);
+                }
+            }
+            return subordinates;
+        }
+
+        public List<Employee> GetSubordinates(int supervisorId) {
+            EmployeeNode supervisorNode = FindNode(root,
+
+
