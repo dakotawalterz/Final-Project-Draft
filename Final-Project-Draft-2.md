@@ -6,6 +6,7 @@ The basic structure of a Tree is as follows: each node in the tree has a value, 
 
 Here's some example code that demonstrates how to implement a simple binary tree in C#:
 
+```C#
     public class TreeNode {
         public int val;
         public TreeNode left;
@@ -37,20 +38,21 @@ Here's some example code that demonstrates how to implement a simple binary tree
             return node;
         }
     }
+```
 This code defines two classes: TreeNode, which represents a single node in the binary tree, and BinaryTree, which represents the entire tree. The BinaryTree class contains a reference to the root node, and defines a method called Insert for adding new nodes to the tree. The Insert method uses recursion to traverse the tree and find the correct location to insert the new node.
 
 Trees have many uses in computer science. One common use is in searching and sorting algorithms, where they can provide efficient access to data. For example, the binary search algorithm uses a binary tree to quickly locate a value in a sorted list.
 
-Another common use for trees is in representing hierarchical relationships between elements. For example, a directory structure in a file system can be represented as a tree, with directories as nodes and files as leaves.
+Another common use for trees is in representing relationships between elements. For example, a directory in a file system can be represented as a tree, with directories as nodes and files as leaves.
 
 Here's an example problem that can be solved using a tree:
 
-Suppose you have a list of employees at a company, each with a unique ID number and a supervisor who they report to. You want to be able to quickly find all of the employees who report to a particular supervisor.
+Pretend you have a list of employees at a company, each with a unique ID number and a supervisor who they report to. You want to be able to quickly find all of the employees who report to a particular supervisor.
 
-One way to solve this problem is to create a tree where each node represents an employee, and the child nodes represent the employees who report to them. The root node represents the CEO of the company. You can then traverse the tree starting from the node representing the desired supervisor, and collect all of the child nodes along the way.
+One way to solve this problem is to create a tree where each node represents an employee, and the child nodes represent the employees who report to them. The root node represents the CEO of the company. You can then scale the tree starting from the node representing the desired supervisor, and collect all of the child nodes along the way.
 
 Here's some example code that demonstrates how to solve this problem:
-
+```c#
     public class Employee {
         public int id;
         public Employee supervisor;
@@ -86,5 +88,5 @@ Here's some example code that demonstrates how to solve this problem:
             EmployeeNode supervisorNode = FindNode(root)
         }
     }
-
+```
 
