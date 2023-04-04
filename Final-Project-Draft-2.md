@@ -83,6 +83,8 @@ Here's some example code that demonstrates how to solve this problem:
         }
 
         public List<Employee> GetSubordinates(int supervisorId) {
-            EmployeeNode supervisorNode = FindNode(root,
+            EmployeeNode supervisorNode = FindNode(root)
+        }
+    }
 
 
